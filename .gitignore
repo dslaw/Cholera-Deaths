@@ -1,0 +1,4 @@
+bin/
+build/
+data/cholera_counts.txt
+*.plist
