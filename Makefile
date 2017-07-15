@@ -17,6 +17,9 @@ data/cholera_counts.txt: data/Cholera_Deaths.csv
 build/utils.o: include/utils.h src/utils.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ src/utils.cpp
 
+build/distributions.o: include/distributions.h src/distributions.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ src/distributions.cpp
+
 
 # Testing.
 test:
