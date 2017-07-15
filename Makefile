@@ -1,5 +1,6 @@
 CXX = clang++
 CXXFLAGS = -std=c++14 -Wall -Wextra -Iinclude
+OPENMP = -fopenmp
 
 .PHONY = clean test
 
@@ -20,6 +21,9 @@ build/utils.o: include/utils.h src/utils.cpp
 build/distributions.o: include/distributions.h src/distributions.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ src/distributions.cpp
 
+build/prefetching.o: include/prefetching.h src/prefetching.cpp
+	$(CXX) $(CXXFLAGS) $(OPENMP) -c -o $@ src/prefetching.cpp
+
 
 # Testing.
 test:
@@ -27,3 +31,7 @@ test:
 		tests/test_utils.cpp \
 		src/utils.cpp
 	./bin/__test_utils
+	$(CXX) $(CXXFLAGS) $(OPENMP) -o bin/__test_prefetching \
+		tests/test_prefetching.cpp \
+		src/prefetching.cpp
+	./bin/__test_prefetching
