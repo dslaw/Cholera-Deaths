@@ -6,6 +6,7 @@
 #include <functional>
 #include <omp.h>
 #include <random>
+#include <stdexcept>
 #include <utility>
 #include <vector>
 
@@ -23,6 +24,13 @@ std::vector<double> draw(double x_t, double nu, std::size_t n,
                          std::mt19937& generator,
                          const std::vector<double>& data,
                          posterior p);
+std::vector<double> sample(const std::vector<double>& data,
+                           double init,
+                           std::size_t n_samples,
+                           posterior p,
+                           double nu,
+                           std::mt19937& generator,
+                           std::size_t n_nodes);
 
 } // namespace prefetch
 

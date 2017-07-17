@@ -102,4 +102,34 @@ std::vector<double> draw(double x_t, double nu, std::size_t n,
     return draws;
 }
 
+std::vector<double> sample(const std::vector<double>& data,
+                           double init,
+                           std::size_t n_samples,
+                           posterior p,
+                           double nu,
+                           std::mt19937& generator,
+                           std::size_t n_nodes) {
+    if (n_samples < 1) {
+        std::invalid_argument("`n_samples` must be positive");
+    }
+
+    if (n_nodes < 1) {
+        std::invalid_argument("`n_nodes` must be positive");
+    }
+
+    std::size_t h;
+    std::vector<double> draws;
+    draws.reserve(n_samples + n_nodes);  // May overdraw samples.
+    draws.push_back(init);
+
+    for (std::size_t t = 0; t < n_samples; t += h) {
+        auto subchain = draw(draws[t], nu, n_nodes, generator, data, p);
+        h = subchain.size();
+        draws.insert(draws.end(), subchain.begin(), subchain.end());
+    }
+
+    draws.resize(draws.size());
+    return draws;
+}
+
 } // namespace prefetch
