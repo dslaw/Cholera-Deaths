@@ -8,11 +8,6 @@
  */
 namespace dist {
 
-const double NEG_INF = -1 * std::numeric_limits<double>::infinity();
-const double NaN = std::numeric_limits<double>::quiet_NaN();
-
-
-/* Probability distribution density functions. */
 double normal_pdf(double x, double mean, double sd) {
     if (sd <= 0) {
         return NaN;
