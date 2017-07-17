@@ -24,6 +24,9 @@ build/distributions.o: include/distributions.h src/distributions.cpp
 build/prefetching.o: include/prefetching.h src/prefetching.cpp
 	$(CXX) $(CXXFLAGS) $(OPENMP) -c -o $@ src/prefetching.cpp
 
+build/adapt.o: include/adapt.h src/adapt.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ src/adapt.cpp
+
 
 # Testing.
 test:
