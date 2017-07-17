@@ -1,7 +1,7 @@
 #include "distributions.h"
 
 
-/* All density functions are calculated for the log.
+/* All density functions are calculated on the log scale.
  *
  * Invalid distribution parameters result in NaN, while
  * an out of range values to be evaluated result in -Inf.
