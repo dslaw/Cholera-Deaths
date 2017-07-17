@@ -1,5 +1,5 @@
-#ifndef __MISC_H
-#define __MISC_H
+#ifndef __UTILS_H
+#define __UTILS_H
 
 #include <fstream>
 #include <sstream>
