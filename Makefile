@@ -1,6 +1,6 @@
 CXX = clang++
-CXXFLAGS = -std=c++14 -Wall -Wextra -Iinclude
-OPENMP = -fopenmp
+CXXFLAGS = -std=c++14 -Wall -Wextra -fopenmp -Iinclude
+OBJ_FILES = $(patsubst src/%.cpp, build/%.o, $(wildcard src/*.cpp))
 
 .PHONY = clean test
 
@@ -15,20 +15,11 @@ data/cholera_counts.txt: data/Cholera_Deaths.csv
 
 
 # Program compilation.
-build/utils.o: include/utils.h src/utils.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ src/utils.cpp
+build/%.o: src/%.cpp include/%.h
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-build/distributions.o: include/distributions.h src/distributions.cpp
-	$(CXX) $(CXXFLAGS) $(OPENMP) -c -o $@ src/distributions.cpp
-
-build/prefetching.o: include/prefetching.h src/prefetching.cpp
-	$(CXX) $(CXXFLAGS) $(OPENMP) -c -o $@ src/prefetching.cpp
-
-build/adapt.o: include/adapt.h src/adapt.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ src/adapt.cpp
-
-build/generic.o: include/generic.h src/generic.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ src/generic.cpp
+bin/sampler: sampler.cpp $(OBJ_FILES)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 
 # Testing.
