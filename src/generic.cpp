@@ -9,6 +9,10 @@ std::vector<double> sample(const std::vector<double>& data,
                            posterior p,
                            double nu,
                            std::mt19937& generator) {
+    if (n_samples < 1) {
+        throw std::invalid_argument("`n_samples` must be positive");
+    }
+
     std::normal_distribution<double> rnormal(0, nu);
     std::uniform_real_distribution<double> runiform(0, 1);
 

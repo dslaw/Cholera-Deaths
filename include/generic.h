@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <random>
+#include <stdexcept>
 #include <vector>
 
 #include "utils.h"
