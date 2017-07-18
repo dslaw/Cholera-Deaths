@@ -10,7 +10,7 @@ std::vector<double> draw_jumps(double nu, std::size_t n, std::mt19937& generator
 
     std::generate(jump_distances.begin(),
                   jump_distances.end(),
-                  [&](void) {
+                  [&]() {
                       return jump_distribution(generator);
                   });
 

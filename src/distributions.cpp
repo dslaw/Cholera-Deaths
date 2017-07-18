@@ -82,7 +82,7 @@ double poisson_gamma(double lambda,
                      double alpha,
                      double beta,
                      bool parallel) {
-    if (!data.size()) {
+    if (data.empty()) {
         throw std::invalid_argument("`data` must contain at least one value");
     }
 

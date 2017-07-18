@@ -9,7 +9,8 @@ namespace adaptive {
 /// @param acceptance_rate  Current acceptance rate.
 /// @param j                Current adaptation number (positive).
 double adapt(double nu, double acceptance_rate, std::size_t j) {
-    double s;
+    double s,
+           i = static_cast<double>(j);
 
     if (acceptance_rate < TARGET_RATE) {
         s = -1;
@@ -19,9 +20,8 @@ double adapt(double nu, double acceptance_rate, std::size_t j) {
         return nu;
     }
 
-    return exp(log(nu) + (s / (double) j));
+    return exp(log(nu) + (s / i));
 }
-
 
 /// Univariate MCMC with diminishing adaptation.
 ///
@@ -59,7 +59,7 @@ std::vector<double> sample(const std::vector<double>& data,
     for (std::size_t t = 1; t < n_samples; ++t) {
         if (t > 0 && t < adaptive_cutoff && (t % periodicity) == 0) {
             auto j = t / periodicity;  // jth adaptation.
-            nu = adapt(nu, (double) accepted / t, j);
+            nu = adapt(nu, static_cast<double>(accepted / t), j);
         }
 
         auto current = draws[t - 1];
