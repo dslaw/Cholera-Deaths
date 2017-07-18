@@ -8,6 +8,8 @@ namespace adaptive {
 /// @param nu               Variance of the (normal) proposal distribution.
 /// @param acceptance_rate  Current acceptance rate.
 /// @param j                Current adaptation number (positive).
+///
+/// @return nu              Adapted value of nu.
 double adapt(double nu, double acceptance_rate, std::size_t j) {
     double s,
            i = static_cast<double>(j);
@@ -33,6 +35,8 @@ double adapt(double nu, double acceptance_rate, std::size_t j) {
 /// @param generator    PRNG.
 /// @param periodicity  How frequently adaptation should be performed
 ///                     (positive).
+///
+/// @return draws       Chain of posterior draws.
 std::vector<double> sample(const std::vector<double>& data,
                            double init,
                            std::size_t n_samples,

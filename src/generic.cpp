@@ -3,6 +3,16 @@
 
 namespace generic {
 
+/// Univariate MCMC sampler.
+///
+/// @param data         Dataset to calculate the log-likelihood over.
+/// @param init         Initial value of the chain (i.e. \theta_{0})
+/// @param n_samples    Number of samples to draw (positive).
+/// @param p            Posterior function (log).
+/// @param nu           Variance of the (normal) proposal distribution.
+/// @param generator    PRNG.
+///
+/// @return draws       Chain of posterior draws.
 std::vector<double> sample(const std::vector<double>& data,
                            double init,
                            std::size_t n_samples,

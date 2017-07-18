@@ -77,6 +77,15 @@ double __poisson_gamma_p(double lambda,
     return prior_density + log_likelihood;
 }
 
+/// Poisson-Gamma log posterior.
+///
+/// @param lambda     Poisson parameter.
+/// @param data       Dataset to calculate the log-likelihood over.
+/// @param alpha      Gamma hyperprior parameter.
+/// @param beta       Gamma hyperprior parameter
+/// @param parallel   Calculate log-likelihood in parallel.
+///
+/// @return posterior Log posterior.
 double poisson_gamma(double lambda,
                      const std::vector<double>& data,
                      double alpha,

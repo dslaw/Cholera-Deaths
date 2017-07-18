@@ -23,11 +23,22 @@ static const std::size_t n_samples = 10000,
                          periodicity = 500,
                          OUTPUT_PRECISION = 10;
 static std::size_t tree_nodes;
+static const std::string help_msg =
+    "Univariate Poisson-Gamma MCMC sampler.\n\n"
+    "Usage: sampler sampler-type input-filename\n"
+    "sampler-type: one of 'adaptive', 'parallel', 'prefetching'.\n"
+    "input-filename: path to file containing input data.\n\n"
+    "   'adaptive' performs diminishing adaptation with a target\n"
+    "   acceptance rate of 44%.\n"
+    "   'parallel' performs vanilla MCMC with parallel likelihood\n"
+    "   calculations.\n"
+    "   'prefetching' uses naive prefetching, with look-ahead\n"
+    "   proposals calculated in parallel.";
 
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
-        std::cout << "Invalid number of arguments" << std::endl;
+        std::cout << help_msg << std::endl;
         return 1;
     }
 
@@ -69,9 +80,7 @@ int main(int argc, char* argv[]) {
                                      nu, generator);
         print_draws(draws);
     } else {
-        std::cout << "`" << sampler << "`"
-                  << " is not a recgonized sampler"
-                  << std::endl;
+        std::cout << help_msg << std::endl;
         return 1;
     }
 
