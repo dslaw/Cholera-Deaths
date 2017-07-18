@@ -2,15 +2,14 @@
 #define __GENERIC_H
 
 #include <cmath>
-#include <functional>
 #include <random>
 #include <vector>
+
+#include "utils.h"
 
 
 // Generic MCMC sampler.
 namespace generic {
-
-typedef std::function<double(double, const std::vector<double>&)> posterior;
 
 std::vector<double> sample(const std::vector<double>& data,
                            double init,

@@ -2,17 +2,17 @@
 #define __ADAPT_H
 
 #include <cmath>
-#include <functional>
 #include <limits>
 #include <random>
 #include <stdexcept>
 #include <vector>
 
+#include "utils.h"
+
+
 namespace adaptive {
 
 const double TARGET_RATE = .44;
-
-typedef std::function<double(double, const std::vector<double>&)> posterior;
 
 double adapt(double nu, double acceptance_rate, std::size_t j);
 std::vector<double> sample(const std::vector<double>& data,

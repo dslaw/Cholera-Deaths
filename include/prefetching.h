@@ -3,17 +3,16 @@
 
 #include <algorithm>
 #include <cmath>
-#include <functional>
 #include <omp.h>
 #include <random>
 #include <stdexcept>
 #include <utility>
 #include <vector>
 
+#include "utils.h"
+
 
 namespace prefetch {
-
-typedef std::function<double(double, const std::vector<double>&)> posterior;
 
 std::vector<double> draw_jumps(double nu, std::size_t n, std::mt19937& generator);
 std::vector<double> proposal_tree(double theta, const std::vector<double>& distances);
