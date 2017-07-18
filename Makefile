@@ -27,6 +27,9 @@ build/prefetching.o: include/prefetching.h src/prefetching.cpp
 build/adapt.o: include/adapt.h src/adapt.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ src/adapt.cpp
 
+build/generic.o: include/generic.h src/generic.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ src/generic.cpp
+
 
 # Testing.
 test:
